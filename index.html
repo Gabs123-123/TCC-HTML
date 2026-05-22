@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Wiki</title>
+    <meta name="description"
+        content="Tudo sobre o universo do Minecraft - mobs, blocos, biomas, itens, dicas e curiosidades">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'minecraft-green': '#5b7c3a',
+                        'minecraft-brown': '#8b6b4d',
+                        'minecraft-gray': '#8d8d8d',
+                        'minecraft-dark': '#3a3a3a',
+                        'minecraft-light': '#f5f5f5'
+                    },
+                    fontFamily: {
+                        'main': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                        'heading': ['"Courier New"', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen bg-minecraft-light font-main">
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <div class="w-10 h-10 bg-minecraft-green rounded flex items-center justify-center">
+                    <i class="fas fa-cube text-white"></i>
+                </div>
+                <h1 class="text-2xl font-heading font-bold text-minecraft-dark">Minecraft Wiki</h1>
+                <p class="text-sm text-minecraft-gray">Tudo sobre o universo do Minecraft</p>
+            </div>
+
+            <div class="w-full md:w-auto">
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="Buscar na wiki..."
+                        class="w-full md:w-64 px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green">
+                    <button id="search-btn"
+                        class="absolute right-2 top-2 bg-minecraft-green text-white px-3 py-1 rounded hover:bg-green-700">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <nav id="main-nav" class="container mx-auto px-4 py-2 border-t border-minecraft-gray/20">
+            <ul class="flex flex-wrap gap-4 justify-center" id="nav-items"></ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Sidebar Menu -->
+            <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+                <h2 class="font-heading font-bold text-lg text-minecraft-dark mb-4">Menu de Navegação</h2>
+                <ul id="sidebar-menu" class="space-y-2"></ul>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                <!-- Sobre o Jogo -->
+                <section id="sobre" class="mb-10 animate-fade-in">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Sobre o Jogo</h2>
+                    <div class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+                        <p class="mb-4 text-gray-700">Minecraft é um jogo de sandbox desenvolvido pela Mojang Studios
+                            onde os jogadores exploram um mundo aberto, mineram recursos, criam construções e enfrentam
+                            criaturas.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-minecraft-light p-4 rounded border">
+                                <h3 class="font-heading font-bold text-lg text-minecraft-green mb-2">História do jogo
+                                </h3>
+                                <p class="text-gray-700">Lançado inicialmente em 2009, Minecraft rapidamente se tornou
+                                    um dos jogos mais vendidos do mundo, com diversas atualizações e expansões ao longo
+                                    dos anos.</p>
+                            </div>
+                            <div class="bg-minecraft-light p-4 rounded border">
+                                <h3 class="font-heading font-bold text-lg text-minecraft-green mb-2">Criador</h3>
+                                <p class="text-gray-700">Markus "Notch" Persson foi o criador original do Minecraft. O
+                                    jogo foi posteriormente adquirido pela Microsoft e desenvolvido pela Mojang Studios.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mobs -->
+                <section id="mobs" class="mb-10">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Mobs (Criaturas)</h2>
+                    <div id="mobs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                </section>
+
+                <!-- Blocos -->
+                <section id="blocos" class="mb-10">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Blocos</h2>
+                    <div id="blocos-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                </section>
+
+                <!-- Biomas -->
+                <section id="biomas" class="mb-10">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Biomas</h2>
+                    <div id="biomas-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                </section>
+
+                <!-- Itens -->
+                <section id="itens" class="mb-10">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Itens</h2>
+                    <div id="itens-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                </section>
+
+                <!-- Dicas e Curiosidades -->
+                <section id="dicas" class="mb-10">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Dicas e Curiosidades</h2>
+                    <div id="dicas-list" class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30"></div>
+                </section>
+
+                <!-- Formulário de Contato -->
+                <section id="contato" class="mb-10 animate-fade-in">
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Fale Conosco</h2>
+                    <form id="contact-form" class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nome" class="block text-sm font-semibold text-minecraft-dark mb-1">Nome
+                                    completo</label>
+                                <input type="text" id="nome" name="nome" required
+                                    class="w-full px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green">
+                            </div>
+                            <div>
+                                <label for="email"
+                                    class="block text-sm font-semibold text-minecraft-dark mb-1">E-mail</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green">
+                            </div>
+                            <div>
+                                <label for="assunto"
+                                    class="block text-sm font-semibold text-minecraft-dark mb-1">Assunto</label>
+                                <select id="assunto" name="assunto"
+                                    class="w-full px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green">
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="informacao">Informação sobre conteúdo</option>
+                                    <option value="correcao">Correção de informação</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="mensagem"
+                                    class="block text-sm font-semibold text-minecraft-dark mb-1">Mensagem</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required
+                                    class="w-full px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-minecraft-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-minecraft-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="font-heading font-bold text-lg">Minecraft Wiki</h3>
+                    <p class="text-minecraft-gray">Projeto Escolar</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-minecraft-green"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-minecraft-green"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-minecraft-green"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <p class="text-center text-sm text-minecraft-gray mt-6">Todos os conteúdos são para fins educacionais e de
+                estudo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data Layer - Complete datasets for all sections
+        const navigationData = [
+            { "label": "Início", "href": "#inicio", "icon": "fas fa-home" },
+            { "label": "Sobre o Jogo", "href": "#sobre", "icon": "fas fa-info-circle" },
+            { "label": "Mobs", "href": "#mobs", "icon": "fas fa-dragon" },
+            { "label": "Blocos", "href": "#blocos", "icon": "fas fa-cubes" },
+            { "label": "Biomas", "href": "#biomas", "icon": "fas fa-tree" },
+            { "label": "Itens", "href": "#itens", "icon": "fas fa-sword" },
+            { "label": "Dicas", "href": "#dicas", "icon": "fas fa-lightbulb" },
+            { "label": "Contato", "href": "#contato", "icon": "fas fa-envelope" }
+        ];
+
+        const mobsData = [
+            { "name": "Steve", "image": "https://wallpapercave.com/wp/wp2477672.jpg", "alt": "Personagem Steve do Minecraft", "description": "Personagem principal padrão, humano que representa o jogador.", "type": "Humano" },
+            { "name": "Alex", "image": "https://tse2.mm.bing.net/th/id/OIP.3I2K36KrSoYT1LWA8cIxPgHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Personagem Alex do Minecraft", "description": "Personagem feminina alternativa, também representa o jogador.", "type": "Humano" },
+            { "name": "Creeper", "image": "https://tse3.mm.bing.net/th/id/OIP.iqMoCCCsdYsZIfUFkcUPcgHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Creeper do Minecraft", "description": "Criatura verde que explode quando se aproxima do jogador.", "type": "Monstro" },
+            { "name": "Zombie", "image": "https://wallpapers.com/images/hd/minecraft-zombie-1920-x-1080-wallpaper-4qi4ar5hbjbmjlnt.jpg", "alt": "Zombie do Minecraft", "description": "Criatura hostil que ataca jogadores durante a noite.", "type": "Monstro" },
+            { "name": "Enderman", "image": "https://wallpapercave.com/wp/wp2099724.png", "alt": "Enderman do Minecraft", "description": "Criatura negra alta que se torna hostil se você olhar para ela.", "type": "Monstro" },
+            { "name": "Esqueleto", "image": "https://wallpapers.com/images/hd/minecraft-skeleton-1024-x-576-wallpaper-x2x894g1jiy8heq5.jpg", "alt": "Esqueleto do Minecraft", "description": "Criatura que dispara flechas contra os jogadores.", "type": "Monstro" }
+        ];
+
+        const blocosData = [
+            { "name": "Terra", "image": "https://th.bing.com/th/id/R.ceb70a1f189272a23c6a17203a73f8d2?rik=LfvhhOyN7iNvzQ&riu=http%3a%2f%2f4.bp.blogspot.com%2f-Ge1FHRHfcGs%2fVbKKNxdrC9I%2fAAAAAAAAL-E%2fLrbqH6SaZMg%2fs1600%2ftexturas-minecraft-terra.jpg&ehk=VqIJsc9otTwJDeg5XryKUxNAkaGaH4iSGbVPhWr1aJk%3d&risl=&pid=ImgRaw&r=0co básico encontrado em quase todos os biomas.", "rarity": "Comum" },
+            { "name": "Pedra", "image": "https://i.pinimg.com/736x/7c/f4/69/7cf469a99f5def7ed0318f7082ebfc63.jpg", "alt": "Bloco de Pedra", "description": "Bloco resistente usado para construções robustas.", "rarity": "Comum" },
+            { "name": "Madeira", "image": "https://i.pinimg.com/originals/e2/36/5a/e2365a3016717dd502703572db45cb1d.png", "alt": "Bloco de Madeira", "description": "Bloco obtido de árvores, usado para ferramentas e construções.", "rarity": "Comum" },
+            { "name": "Diamante", "image": "https://th.bing.com/th/id/R.58c3116b0073ea65b99571e5904ace61?rik=9lPpXFt1OqP2Zg&pid=ImgRaw&r=0", "alt": "Bloco de Diamante", "description": "Bloco raro e valioso, usado para ferramentas e armas de alta qualidade.", "rarity": "Raro" },
+            { "name": "Obsidian", "image": "https://th.bing.com/th/id/R.f18a9b13c99f7ec55d70d900af0c528d?rik=GhIWRRYElI%2bmJw&pid=ImgRaw&r=0", "alt": "Bloco de Obsidian", "description": "Bloco extremamente resistente, usado para portais do Nether.", "rarity": "Raro" }
+        ];
+
+        const biomasData = [
+            { "name": "Floresta", "image": "https://tse4.mm.bing.net/th/id/OIP.090KvebiN4laPeO4uxP5OAHaEn?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Floresta", "description": "Bioma com muitas árvores, animais como lobos e recursos abundantes.", "climate": "Temperado" },
+            { "name": "Deserto", "image": "https://tse4.mm.bing.net/th/id/OIP.XcR2eXeqz7gsHD9enUuAzwHaET?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Deserto", "description": "Bioma quente com pouca vegetação, cactos e templos desertos.", "climate": "Quente" },
+            { "name": "Ártico", "image": "https://tse4.mm.bing.net/th/id/OIP.1vbybE2T8OTvKtmzH4KCiwHaD0?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Neve", "description": "Bioma frio com neve, iglus e animais como ursos polares.", "climate": "Frio" },
+            { "name": "Savanna", "image": "https://minecraft.wiki/images/thumb/Savannabiome.png/800px-Savannabiome.png?3eb03", "alt": "Bioma Savana", "description": "Bioma com grama alta, acácias e cavalos.", "climate": "Quente" },
+            { "name": "Nether", "image": "https://tse3.mm.bing.net/th/id/OIP.iQn2zS0-UcXRfh6voqDSQQHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Nether", "description": "Bioma infernal com lava, ghasts e recursos exclusivos.", "climate": "Infernal" },
+            { "name": "End", "image": "https://tse2.mm.bing.net/th/id/OIP.1gfxKxhbFdSDboj1vN4xHgHaD7?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma End", "description": "Bioma final do jogo, com endermans e o dragão do End.", "climate": "Vazio" }
+        ];
+
+        const itensData = [
+            { "name": "Espada", "image": "https://minecraft.wiki/images/Enchanted_Stone_Sword.gif?f84de", "alt": "Espada do Minecraft", "description": "Item usado para combate contra mobs.", "material": "Vários" },
+            { "name": "Picareta", "image": "https://tse2.mm.bing.net/th/id/OIP.IVc28tJjigbQamyk66-zXwAAAA?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Picareta do Minecraft", "description": "Item usado para minerar blocos mais rapidamente.", "material": "Vários" },
+            { "name": "Machado", "image": "", "alt": "Machado do Minecraft", "description": "Item que protege o jogador contra danos.", "material": "Vários" },
+            { "name": "Poções", "image": "", "alt": "Poções do Minecraft", "description": "Item que concede efeitos temporários ao jogador.", "material": "Diversos" }
+        ];
+        const dicasData = [
+            { "tip": "Para sobreviver à primeira noite, construa um pequeno abrigo antes do sol se apagar." },
+            { "tip": "Use a picareta adequada para cada tipo de bloco para minerar mais eficientemente." },
+            { "tip": "Combine diamantes com obsidian para criar um portal para o Nether." },
+            { "tip": "Crie uma fazenda automática para recursos como trigo, carne e ferro." },
+            { "tip": "Explore cavernas durante o dia para evitar encontros com monstros hostis." },
+            { "tip": "Use a cama para definir seu ponto de ressurgimento e passar a noite rapidamente." },
+            { "tip": "Combine poções para efeitos mais poderosos, como regeneração e força." },
+            { "tip": "Construa um mapa do mundo para não se perder em explorações longas." }
+        ];
+
+        // Reusable Render Functions
+        function renderNavItems(items) {
+            return items.map(item => "<li><a href=\"" + item.href + "\" class=\"text-minecraft-dark hover:text-minecraft-green font-medium px-3 py-2 rounded transition-colors\"><i class=\"" + item.icon + " mr-2\"></i>" + item.label + "</a></li>").join("");
+        }
+
+        function renderSidebarMenu(items) {
+            return items.map(item => "<li><a href=\"" + item.href + "\" class=\"block py-2 px-3 text-gray-700 hover:text-minecraft-green hover:bg-minecraft-light rounded transition-colors\"><i class=\"" + item.icon + " mr-2\"></i>" + item.label + "</a></li>").join("");
+        }
+
+        function renderCardGrid(items, type) {
+            return items.map(item => {
+                const details = type === "mobs" ? "<p class=\"text-sm text-minecraft-gray mt-2\"><strong>Tipo:</strong> " + item.type + "</p>" :
+                    type === "blocos" ? "<p class=\"text-sm text-minecraft-gray mt-2\"><strong>Raridade:</strong> " + item.rarity + "</p>" :
+                        type === "biomas" ? "<p class=\"text-sm text-minecraft-gray mt-2\"><strong>Clima:</strong> " + item.climate + "</p>" :
+                            type === "itens" ? "<p class=\"text-sm text-minecraft-gray mt-2\"><strong>Material:</strong> " + item.material + "</p>" : "";
+
+                return "<div class=\"bg-white rounded-lg shadow border border-minecraft-gray/30 hover:shadow-lg transition-shadow animate-slide-up\"><div class=\"p-4\"><img src=\"" + item.image + "\" alt=\"" + item.alt + "\" class=\"w-full h-48 object-cover rounded mb-4\" loading=\"lazy\"><h3 class=\"font-heading font-bold text-lg text-minecraft-dark mb-2\">" + item.name + "</h3><p class=\"text-gray-700 mb-2\">" + item.description + "</p>" + details + "</div></div>";
+            }).join("");
+        }
+
+        function renderTipsList(items) {
+            return "<ul class=\"space-y-3\">" + items.map(item => "<li class=\"flex items-start\"><i class=\"fas fa-lightbulb text-minecraft-green mr-3 mt-1\"></i><p class=\"text-gray-700\">" + item.tip + "</p></li>").join("") + "</ul>";
+        }
+
+        // Initialize Page Content
+        document.getElementById("nav-items").innerHTML = renderNavItems(navigationData);
+        document.getElementById("sidebar-menu").innerHTML = renderSidebarMenu(navigationData);
+        document.getElementById("mobs-grid").innerHTML = renderCardGrid(mobsData, "mobs");
+        document.getElementById("blocos-grid").innerHTML = renderCardGrid(blocosData, "blocos");
+        document.getElementById("biomas-grid").innerHTML = renderCardGrid(biomasData, "biomas");
+        document.getElementById("itens-grid").innerHTML = renderCardGrid(itensData, "itens");
+        document.getElementById("dicas-list").innerHTML = renderTipsList(dicasData);
+
+        // Interactive Features
+        // Search functionality
+        document.getElementById("search-btn").addEventListener("click", function () {
+            const query = document.getElementById("search-input").value.trim();
+            if (query) {
+                alert("Buscar por: " + query + "\nEsta funcionalidade seria implementada com backend para pesquisa real.");
+            }
+        });
+
+        // Form submission
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const assunto = document.getElementById("assunto").value;
+            const mensagem = document.getElementById("mensagem").value;
+
+            alert("Formulário enviado!\n\nNome: " + nome + "\nE-mail: " + email + "\nAssunto: " + assunto + "\nMensagem: " + mensagem + "\n\nEsta mensagem seria enviada a um servidor em uma implementação completa.");
+
+            // Reset form
+            document.getElementById("contact-form").reset();
+        });
+
+        // Smooth scrolling for all navigation links
+        document.addEventListener("click", function (event) {
+            const link = event.target.closest("a[href^='#']");
+            if (!link) return;
+            event.preventDefault();
+            const targetId = link.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+
+        // Hover animations for cards
+        const cards = document.querySelectorAll('.bg-white.rounded-lg.shadow.border');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-lg');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-lg');
+            });
+        });
+    </script>
+</body>
+
+</html>
