@@ -45,7 +45,7 @@
     </script>
 </head>
 
-<body class="min-h-screen bg-minecraft-light font-main">
+<body class="min-h-screen bg-minecraft-light font-main" style="background-color: forestgreen ;">
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
             <div class="flex items-center space-x-3 mb-4 md:mb-0">
@@ -57,15 +57,7 @@
             </div>
 
             <div class="w-full md:w-auto">
-                <div class="relative">
-                    <input type="text" id="search-input" placeholder="Buscar na wiki..."
-                        class="w-full md:w-64 px-4 py-2 border border-minecraft-brown rounded-lg focus:outline-none focus:ring-2 focus:ring-minecraft-green">
-                    <button id="search-btn"
-                        class="absolute right-2 top-2 bg-minecraft-green text-white px-3 py-1 rounded hover:bg-green-700">
-                        <i class="fas fa-search"></i>
-                    </button>
                 </div>
-            </div>
         </div>
 
         <nav id="main-nav" class="container mx-auto px-4 py-2 border-t border-minecraft-gray/20">
@@ -76,7 +68,7 @@
     <main class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <!-- Sidebar Menu -->
-            <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+            <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6 border border-minecraft-gray/30" style="background-color: rgb(0, 253, 29);">
                 <h2 class="font-heading font-bold text-lg text-minecraft-dark mb-4">Menu de Navegação</h2>
                 <ul id="sidebar-menu" class="space-y-2"></ul>
             </aside>
@@ -86,19 +78,19 @@
                 <!-- Sobre o Jogo -->
                 <section id="sobre" class="mb-10 animate-fade-in">
                     <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Sobre o Jogo</h2>
-                    <div class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+                    <div class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30" style="background-color: rgb(0, 253, 29);">
                         <p class="mb-4 text-gray-700">Minecraft é um jogo de sandbox desenvolvido pela Mojang Studios
                             onde os jogadores exploram um mundo aberto, mineram recursos, criam construções e enfrentam
                             criaturas.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            <div class="bg-minecraft-light p-4 rounded border">
+                            <div class="bg-minecraft-light p-4 rounded border" style="background-color: rgb(172, 255, 172);">
                                 <h3 class="font-heading font-bold text-lg text-minecraft-green mb-2">História do jogo
                                 </h3>
                                 <p class="text-gray-700">Lançado inicialmente em 2009, Minecraft rapidamente se tornou
                                     um dos jogos mais vendidos do mundo, com diversas atualizações e expansões ao longo
                                     dos anos.</p>
                             </div>
-                            <div class="bg-minecraft-light p-4 rounded border">
+                            <div class="bg-minecraft-light p-4 rounded border" style="background-color: rgb(172, 255, 172);">
                                 <h3 class="font-heading font-bold text-lg text-minecraft-green mb-2">Criador</h3>
                                 <p class="text-gray-700">Markus "Notch" Persson foi o criador original do Minecraft. O
                                     jogo foi posteriormente adquirido pela Microsoft e desenvolvido pela Mojang Studios.
@@ -110,7 +102,7 @@
 
                 <!-- Mobs -->
                 <section id="mobs" class="mb-10">
-                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Mobs (Criaturas)</h2>
+                    <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4" >Mobs (Criaturas)</h2>
                     <div id="mobs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
                 </section>
 
@@ -141,7 +133,7 @@
                 <!-- Formulário de Contato -->
                 <section id="contato" class="mb-10 animate-fade-in">
                     <h2 class="font-heading font-bold text-2xl text-minecraft-dark mb-4">Fale Conosco</h2>
-                    <form id="contact-form" class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30">
+                    <form id="contact-form" class="bg-white rounded-lg shadow p-6 border border-minecraft-gray/30" style="background-color: rgb(0, 253, 29);">
                         <div class="space-y-4">
                             <div>
                                 <label for="nome" class="block text-sm font-semibold text-minecraft-dark mb-1">Nome
@@ -216,12 +208,19 @@
         ];
 
         const mobsData = [
-            { "name": "Steve", "image": "https://wallpapercave.com/wp/wp2477672.jpg", "alt": "Personagem Steve do Minecraft", "description": "Personagem principal padrão, humano que representa o jogador.", "type": "Humano" },
+            { "name": "Steve", "image": "https://wallpapercave.com/wp/wp2477672.jpg", "alt": "Personagem Steve do Minecraft", "description": "Personagem principal padrão, humano que representa o jogador.", "type": "Humano"  },
             { "name": "Alex", "image": "https://tse2.mm.bing.net/th/id/OIP.3I2K36KrSoYT1LWA8cIxPgHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Personagem Alex do Minecraft", "description": "Personagem feminina alternativa, também representa o jogador.", "type": "Humano" },
+            { "name": "Villager", "image": "https://tse2.mm.bing.net/th/id/OIP._VPeItLrP8b5J-5-tShfmgHaJ4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Villager do Minecraft", "description": "Criatura pacífica que faz trocas com o jogador.", "type": "Humano" },
             { "name": "Creeper", "image": "https://tse3.mm.bing.net/th/id/OIP.iqMoCCCsdYsZIfUFkcUPcgHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Creeper do Minecraft", "description": "Criatura verde que explode quando se aproxima do jogador.", "type": "Monstro" },
             { "name": "Zombie", "image": "https://wallpapers.com/images/hd/minecraft-zombie-1920-x-1080-wallpaper-4qi4ar5hbjbmjlnt.jpg", "alt": "Zombie do Minecraft", "description": "Criatura hostil que ataca jogadores durante a noite.", "type": "Monstro" },
             { "name": "Enderman", "image": "https://wallpapercave.com/wp/wp2099724.png", "alt": "Enderman do Minecraft", "description": "Criatura negra alta que se torna hostil se você olhar para ela.", "type": "Monstro" },
-            { "name": "Esqueleto", "image": "https://wallpapers.com/images/hd/minecraft-skeleton-1024-x-576-wallpaper-x2x894g1jiy8heq5.jpg", "alt": "Esqueleto do Minecraft", "description": "Criatura que dispara flechas contra os jogadores.", "type": "Monstro" }
+            { "name": "Esqueleto", "image": "https://wallpapers.com/images/hd/minecraft-skeleton-1024-x-576-wallpaper-x2x894g1jiy8heq5.jpg", "alt": "Esqueleto do Minecraft", "description": "Criatura que dispara flechas contra os jogadores.", "type": "Monstro" },
+            { "name": "Esqueleto Wither", "image": "https://pbs.twimg.com/media/FLAXC4hWUAAS0jc.jpg", "alt": "Esqueleto Wither do Minecraft", "description": "Criatura que ataca os jogadores com uma espada de pedra e aplica efeitos de wither.", "type": "Monstro" },
+            { "name": "Piglin", "image": "https://tse1.explicit.bing.net/th/id/OIP.wQXFIsgoQFZI9jUoHZuH4gAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Piglin do Minecraft", "description": "Criatura que ataca os jogadores caso eles não tenham ouro.", "type": "Monstro" },
+            { "name": "Ghast", "image": "https://wallpapercave.com/wp/wp10914685.jpg", "alt": "Ghast do Minecraft", "description": "Criatura que ataca os jogadores com bolas de fogo.", "type": "Monstro" },
+            { "name": "Ender Dragon", "image": "https://assets.isu.pub/document-structure/230417125040-7294a4f5b8075c8e30c524ff528b5826/v1/14b656171ed63e53637abcf04a0eca31.jpeg", "alt": "Ender Dragon do Minecraft", "description": "Criatura que representa o boss final do jogo e domina o end.", "type": "Boss" },
+            { "name": "Wither", "image": "https://tse4.mm.bing.net/th/id/OIP.BLtimhtYQU10GaVWR_V6WAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Wither Boss do Minecraft", "description": "Criatura que pode ser invocada e é um boss.", "type": "Boss" },
+            { "name": "Warden", "image": "https://wallpapercave.com/wp/wp10584473.jpg", "alt": "Warden do Minecraft", "description": "Criatura que guarda a cidade ancestral.", "type": "Boss" },
         ];
 
         const blocosData = [
@@ -238,13 +237,16 @@
             { "name": "Ártico", "image": "https://tse4.mm.bing.net/th/id/OIP.1vbybE2T8OTvKtmzH4KCiwHaD0?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Neve", "description": "Bioma frio com neve, iglus e animais como ursos polares.", "climate": "Frio" },
             { "name": "Savanna", "image": "https://minecraft.wiki/images/thumb/Savannabiome.png/800px-Savannabiome.png?3eb03", "alt": "Bioma Savana", "description": "Bioma com grama alta, acácias e cavalos.", "climate": "Quente" },
             { "name": "Nether", "image": "https://tse3.mm.bing.net/th/id/OIP.iQn2zS0-UcXRfh6voqDSQQHaEK?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma Nether", "description": "Bioma infernal com lava, ghasts e recursos exclusivos.", "climate": "Infernal" },
-            { "name": "End", "image": "https://tse2.mm.bing.net/th/id/OIP.1gfxKxhbFdSDboj1vN4xHgHaD7?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma End", "description": "Bioma final do jogo, com endermans e o dragão do End.", "climate": "Vazio" }
+            { "name": "End", "image": "https://tse2.mm.bing.net/th/id/OIP.1gfxKxhbFdSDboj1vN4xHgHaD7?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3", "alt": "Bioma End", "description": "Bioma final do jogo, com endermans e o dragão do End.", "climate": "Vazio" },
+            { "name": "Cidade Ancestral", "image": "https://criticalhits.com.br/wp-content/uploads/2023/07/minecraft-ancient-city.jpg", "alt": "Bioma Cidade Ancestral", "description": "Bioma escondido no fundo das cavernas.", "climate": "???" },
         ];
 
         const itensData = [
             { "name": "Espada", "image": "https://minecraft.wiki/images/Enchanted_Stone_Sword.gif?f84de", "alt": "Espada do Minecraft", "description": "Item usado para combate contra mobs.", "material": "Vários" },
             { "name": "Picareta", "image": "https://minecraft.wiki/images/Enchanted_Stone_Pickaxe.gif?7559c", "alt": "Picareta do Minecraft", "description": "Item usado para minerar blocos mais rapidamente.", "material": "Vários" },
-            { "name": "Machado", "image": "https://minecraft.wiki/images/Enchanted_Stone_Axe.gif?6f212", "alt": "Machado do Minecraft", "description": "Item que protege o jogador contra danos.", "material": "Vários" },
+            { "name": "Machado", "image": "https://minecraft.wiki/images/Enchanted_Stone_Axe.gif?6f212", "alt": "Machado do Minecraft", "description": "Item usado para destruir madeira mais rapidamente.", "material": "Vários" },
+            { "name": "Pá", "image": "https://minecraft.wiki/images/thumb/Enchanted_Netherite_Shovel.gif/120px-Enchanted_Netherite_Shovel.gif?36ee0", "alt": "Pá do Minecraft", "description": "Item que cava mais rapidamente.", "material": "Vários" },
+            { "name": "Arco", "image": "https://cdn.apexminecrafthosting.com/img/uploads/2021/10/11194625/Enchanted-Bow.gif", "alt": "Arco do Minecraft", "description": "Item que pode ser usado para atacar criaturas em um longo alcance.", "material": "Vários" },
             { "name": "Poções", "image": "https://minecraft.wiki/images/Water_Bottle_JE2_BE2.png?acae5", "alt": "Poções do Minecraft", "description": "Item que concede efeitos temporários ao jogador.", "material": "Diversos" }
         ];
         const dicasData = [
@@ -292,13 +294,7 @@
         document.getElementById("dicas-list").innerHTML = renderTipsList(dicasData);
 
         // Interactive Features
-        // Search functionality
-        document.getElementById("search-btn").addEventListener("click", function () {
-            const query = document.getElementById("search-input").value.trim();
-            if (query) {
-                alert("Buscar por: " + query + "\nEsta funcionalidade seria implementada com backend para pesquisa real.");
-            }
-        });
+        
 
         // Form submission
         document.getElementById("contact-form").addEventListener("submit", function (event) {
